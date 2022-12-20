@@ -1,4 +1,4 @@
-FROM python:3.10
+FROM apache/spark-py
 WORKDIR /home/
 ADD pyproject.toml ./
 RUN pip install .
