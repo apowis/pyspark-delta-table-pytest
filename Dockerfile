@@ -1,4 +1,4 @@
-FROM jupyter/pyspark-notebook
+FROM python:3.10
 WORKDIR /home/
 ADD pyproject.toml ./
 RUN pip install .
