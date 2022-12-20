@@ -1,4 +1,5 @@
 FROM apache/spark-py
+USER root
 WORKDIR /home/
 ADD pyproject.toml ./
 RUN python3 -m pip install --upgrade pip && \
