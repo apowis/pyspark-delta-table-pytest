@@ -18,8 +18,8 @@ jobs:
         uses: tj-actions/changed-files@v35
         with:
           json: "true"
-        #   files: |
-        #     notebooks/Jobs/**
+          files: |
+            notebooks/Jobs/**
 
       - name: List all added files
         run: |
@@ -27,11 +27,11 @@ jobs:
             echo "$file was added"
           done
 
-  # check-notebook:
-  #   runs-on: ubuntu-latest
-  #   needs: gather-notebooks
-  #   strategy:
-  #     matrix:
-  #       notebook: ${{ fromJSON(needs.gather-notebooks.outputs.changed_files) }}
-  #   steps:
-  #     - run: echo $notebook
+  check-notebook:
+    runs-on: ubuntu-latest
+    needs: gather-notebooks
+    strategy:
+      matrix:
+        notebook: ${{ fromJSON(needs.gather-notebooks.outputs.changed_files) }}
+    steps:
+      - run: echo $notebook
