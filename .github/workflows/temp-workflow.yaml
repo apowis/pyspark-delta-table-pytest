@@ -25,6 +25,6 @@ jobs:
     needs: gather-notebooks
     strategy:
       matrix:
-        notebook: ${{ (needs.build-contexts.outputs.matrix) }}
+        notebook: ${{ (needs.gather-notebooks.outputs.changed_files) }}
     steps:
       - run: echo $notebook
