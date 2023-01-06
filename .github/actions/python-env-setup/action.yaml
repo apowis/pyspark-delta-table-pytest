@@ -1,6 +1,9 @@
 name: "Set up pyspark environment"
 description: "Set up pyspark environment"
-# inputs:
+inputs:
+  python_version:
+    description: "Python version to install"
+    required: true
 #   pyproject_toml:
 #     description: "Path to pyproject.toml"
 #     required: true
@@ -8,6 +11,10 @@ description: "Set up pyspark environment"
 runs:
   using: "composite"
   steps:
+    - uses: actions/setup-python@v4
+      with:
+        python-version: ${{ python_version }}
+
     - name: "test output"
       shell: "bash"
       run: |

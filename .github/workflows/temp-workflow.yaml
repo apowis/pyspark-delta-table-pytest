@@ -46,5 +46,5 @@ jobs:
 
       - name: composite test
         uses: "./.github/actions/python-env-setup"
-        # with:
-        #   pyproject_toml: ./pyproject.toml
+        with:
+          python_version: "3.10"
