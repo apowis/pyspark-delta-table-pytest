@@ -43,3 +43,8 @@ jobs:
         run: |
           echo ${{ matrix.container }}
           cat ${{ matrix.container }}
+
+      - name: composite test
+        uses: "./.github/actions/python-env-setup"
+        # with:
+        #   pyproject_toml: ./pyproject.toml

@@ -1,0 +1,15 @@
+name: "Set up pyspark environment"
+description: "Set up pyspark environment"
+# inputs:
+#   pyproject_toml:
+#     description: "Path to pyproject.toml"
+#     required: true
+
+runs:
+  using: "composite"
+  steps:
+    - name: "test output"
+      shell: "bash"
+      run: |
+        ls
+        pip install .
