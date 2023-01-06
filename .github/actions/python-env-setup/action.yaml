@@ -4,9 +4,6 @@ inputs:
   python_version:
     description: "Python version to install"
     required: true
-#   pyproject_toml:
-#     description: "Path to pyproject.toml"
-#     required: true
 
 runs:
   using: "composite"
@@ -15,8 +12,9 @@ runs:
       with:
         python-version: ${{ inputs.python_version }}
 
-    - name: "test output"
+    - name: "pip install ."
       shell: "bash"
       run: |
+        pwd
         ls
         pip install .
