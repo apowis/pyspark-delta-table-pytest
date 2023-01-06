@@ -15,4 +15,6 @@ pip install .
 pytest
 ```
 
-You can also just use the provided Dockerfile using the command `docker build .`.
+## GitHub Actions
+Some of the methods I have used for the GitHub Actions are definitely sub-optimal.
+I use this repo as a bit of a playground to test actions.
