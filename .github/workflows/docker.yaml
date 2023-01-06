@@ -1,24 +1,22 @@
-name: Docker build and test
-
+name: pytests
 on:
-  push:
-    branches: [ main ]
+  pull_request:
+    branches:
+      - main
+    types: [opened, synchronize, reopened, closed]
 
 jobs:
   build:
     runs-on: ubuntu-latest
     strategy:
       matrix:
-        python-version: ["3.11"]
+        python-version: ["3.10"]
     steps:
       - uses: actions/checkout@v3
 
-      - name: Set up Python
-        uses: actions/setup-python@v4
+      - name: Set up pyspark
+        uses: "./.github/actions/python-env-setup"
         with:
-          python-version: ${{ matrix.python-version }}
-          cache: 'pip' # caching pip dependencies
-
-      - run: pip install .
+          python_version: ${{ matrix.python-version }}
 
       - run: python -m pytest
