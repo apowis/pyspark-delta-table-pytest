@@ -6,10 +6,10 @@ on:
     types: [opened, synchronize, reopened, closed]
 
 jobs:
-  gather-notebooks:
+  changed-files:
     runs-on: ubuntu-latest
     outputs:
-      changed_files: ${{ steps.changed-files.outputs.all_changed_files }}
+      matrix: ${{ steps.set-matrix.outputs.matrix }}
     steps:
       - uses: actions/checkout@v3
 
@@ -21,16 +21,15 @@ jobs:
           files: |
             notebooks/Jobs/**
 
-      - name: List all added files
-        run: |
-          for file in ${{ steps.changed-files.outputs.all_changed_files }}; do
-            echo "$file was added"
-          done
+      - name: Set output notebooks json
+        run: echo "matrix={\"container\":${{ steps.changed-files.outputs.all_changed_files }}}" >> "$GITHUB_OUTPUT"
 
   check-notebook:
     runs-on: ubuntu-latest
-    needs: gather-notebooks
+    needs: [changed-files]
     strategy:
-      matrix: ${{ fromJSON(needs.gather-notebooks.outputs.changed_files) }}
+      matrix: ${{ fromJSON(needs.changed-files.outputs.matrix) }}
+      max-parallel: 4
+      fail-fast: false
     steps:
-      - run: echo $matrix
+      - run: echo ${{ matrix.container }}
