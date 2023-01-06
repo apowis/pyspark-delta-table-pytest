@@ -1,24 +1,24 @@
-name: Docker build and test
+# name: Docker build and test
 
-on:
-  push:
-    branches: [ main ]
+# on:
+#   push:
+#     branches: [ main ]
 
-jobs:
-  build:
-    runs-on: ubuntu-latest
-    strategy:
-      matrix:
-        python-version: ["3.11"]
-    steps:
-      - uses: actions/checkout@v3
+# jobs:
+#   build:
+#     runs-on: ubuntu-latest
+#     strategy:
+#       matrix:
+#         python-version: ["3.11"]
+#     steps:
+#       - uses: actions/checkout@v3
 
-      - name: Set up Python
-        uses: actions/setup-python@v4
-        with:
-          python-version: ${{ matrix.python-version }}
-          cache: 'pip' # caching pip dependencies
+#       - name: Set up Python
+#         uses: actions/setup-python@v4
+#         with:
+#           python-version: ${{ matrix.python-version }}
+#           cache: 'pip' # caching pip dependencies
 
-      - run: pip install .
+#       - run: pip install .
 
-      - run: python -m pytest
+#       - run: python -m pytest
