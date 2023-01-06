@@ -21,6 +21,12 @@ jobs:
         #   files: |
         #     notebooks/Jobs/**
 
+      - name: List all added files
+        run: |
+          for file in ${{ steps.changed-files.outputs.all_changed_files }}; do
+            echo "$file was added"
+          done
+
   # check-notebook:
   #   runs-on: ubuntu-latest
   #   needs: gather-notebooks
