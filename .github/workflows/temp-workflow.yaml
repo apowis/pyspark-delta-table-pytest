@@ -21,6 +21,8 @@ jobs:
         uses: tj-actions/changed-files@v35
         with:
           json: true
+          files: |
+            notebooks/Jobs/**
       - name: List all changed files
         run: echo '${{ steps.changed-files.outputs.all_changed_files }}'
       - id: set-matrix
@@ -40,3 +42,4 @@ jobs:
       - name: Test
         run: |
           echo ${{ matrix.container }}
+          cat ${{ matrix.container }}
