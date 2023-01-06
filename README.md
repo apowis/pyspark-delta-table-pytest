@@ -1,5 +1,5 @@
 # pytest-spark-quick-demo
-A tiny demo of using the pytest-spark library to test delta tables.
+A demo of using the pytest-spark library to test delta tables.
 
 ## Instructions To Test
 

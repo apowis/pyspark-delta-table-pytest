@@ -4,7 +4,7 @@ build-backend = "setuptools.build_meta"
 
 [project]
 name = "pytest-spark-demo"
-description = "A tiny demo of using the pytest-spark library to test delta tables."
+description = "A demo of using the pytest-spark library to test delta tables."
 version = "0.0.1"
 authors = [{name = "Adam Powis"}]
 readme = "README.md"
