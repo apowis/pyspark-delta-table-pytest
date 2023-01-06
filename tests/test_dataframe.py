@@ -20,8 +20,13 @@ DROP_STATEMENT = f"drop table if exists {TABLE_NAME}"
 
 # Scope set to "module", so that this fixture only
 # gets run once within this file.
-@pytest.fixture(scope="module")
+@pytest.fixture(scope="module", autouse=True)
 def create_delta_table(spark_session: SparkSession):
+    """
+    Creates a new delta table, making sure to drop the table
+    first, incase it still exists.
+    Once this module is complete, it drops the table.
+    """
     spark_session.sql(DROP_STATEMENT)
     df: SqlDataFrame = spark_session.createDataFrame(
         [
