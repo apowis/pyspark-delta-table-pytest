@@ -4,7 +4,7 @@ build-backend = "setuptools.build_meta"
 
 [project]
 name = "pytest-spark-demo"
-description = "A tiny demo of using the pytest-spark library with an easy to use Dockerfile"
+description = "A tiny demo of using the pytest-spark library to test delta tables."
 version = "0.0.1"
 authors = [{name = "Adam Powis"}]
 readme = "README.md"
@@ -12,6 +12,7 @@ license = {file = "LICENSE"}
 classifiers = ["License :: OSI Approved :: MIT License"]
 requires-python = ">=3.7.2"
 dependencies = [
+    "delta-spark",
     "pyspark",
     "pytest-spark",
 ]

@@ -127,3 +127,7 @@ dmypy.json
 
 # Pyre type checker
 .pyre/
+
+# pyspark directories
+metastore_db/
+spark-warehouse/
