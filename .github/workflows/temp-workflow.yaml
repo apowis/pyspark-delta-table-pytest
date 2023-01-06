@@ -16,9 +16,9 @@ jobs:
       - name: Get changed files
         id: changed-files
         uses: tj-actions/changed-files@v35
-        with:
-          files: |
-            notebooks/Jobs/**
+        # with:
+        #   files: |
+        #     notebooks/Jobs/**
 
   check-notebook:
     runs-on: ubuntu-latest
