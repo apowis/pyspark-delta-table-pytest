@@ -18,17 +18,12 @@ jobs:
         with:
           python-version: ${{ inputs.python_version }}
 
-      - name: Set up pyspark
-        uses: "./.github/actions/python-env-setup"
-        with:
-          python_version: ${{ matrix.python-version }}
-
       - run: pip install .
 
       - name: Run pylint
         run: |
           echo "# Pylint Output" > pylint_output.txt
-          pylint foo.py > pylint_output.txt
+          pylint foo.py >> pylint_output.txt
 
       - name: run pytests
         if: always()
