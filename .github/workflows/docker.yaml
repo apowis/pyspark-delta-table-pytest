@@ -18,17 +18,14 @@ jobs:
         with:
           python-version: ${{ inputs.python_version }}
 
-      - run: |
-          pip install .
-          pip install pylint pytest
+      - run: pip install .
 
       - name: Run pylint
         run: |
           echo "# Pylint Output" > pylint_output.txt
-          pylint foo.py >> pylint_output.txt
+          pylint src/ >> pylint_output.txt
 
       - name: run pytests
-        if: always()
         run: |
           echo "" >> pylint_output.txt
           echo "# Pytest Output" >> pylint_output.txt
