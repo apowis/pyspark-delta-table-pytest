@@ -26,16 +26,21 @@ jobs:
       - run: pip install .
 
       - name: Run pylint
-        run:
+        run: |
+          echo "# Pylint Output" > pylint_output.txt
           pylint foo.py > pylint_output.txt
 
+      - name: run pytests
+        if: always()
+        run: |
+          echo "" >> pylint_output.txt
+          echo "# Pytest Output" >> pylint_output.txt
+          python -m pytest >> pylint_output.txt
+
       - name: pylint output to PR on failure
-        if: failure()
+        if: always()
         uses: thollander/actions-comment-pull-request@v2
         with:
           comment_tag: pylint_output
           mode: upsert
           filePath: pylint_output.txt
-
-
-      - run: python -m pytest
