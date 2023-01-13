@@ -32,7 +32,7 @@ jobs:
         run: |
           echo "" >> pylint_output.txt
           echo "# Pytest Output" >> pylint_output.txt
-          python -m pytest >> pylint_output.txt
+          python -m pytest tests/ >> pylint_output.txt
 
       - name: pylint output to PR on failure
         if: always()
