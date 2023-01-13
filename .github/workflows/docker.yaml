@@ -14,9 +14,27 @@ jobs:
     steps:
       - uses: actions/checkout@v3
 
-      - name: Set up pyspark
-        uses: "./.github/actions/python-env-setup"
+      - uses: actions/setup-python@v4
         with:
-          python_version: ${{ matrix.python-version }}
+          python-version: ${{ matrix.python-version }}
 
-      - run: python -m pytest
+      - run: pip install .
+
+      - name: Run pylint
+        run: |
+          echo "# Pylint Output" > pylint_output.txt
+          pylint src/ >> pylint_output.txt
+
+      - name: run pytests
+        run: |
+          echo "" >> pylint_output.txt
+          echo "# Pytest Output" >> pylint_output.txt
+          python -m pytest tests/ >> pylint_output.txt
+
+      - name: pylint output to PR on failure
+        if: always()
+        uses: thollander/actions-comment-pull-request@v2
+        with:
+          comment_tag: pylint_output
+          mode: upsert
+          filePath: pylint_output.txt
