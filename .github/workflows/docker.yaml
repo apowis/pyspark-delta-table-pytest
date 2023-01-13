@@ -18,7 +18,9 @@ jobs:
         with:
           python-version: ${{ inputs.python_version }}
 
-      - run: pip install .
+      - run: |
+          ls
+          pip install .
 
       - name: Run pylint
         run: |
