@@ -29,8 +29,8 @@ jobs:
         run:
           pylint foo.py > pylint_output.txt
 
-      - name: pylint output to PR
-        if: always()
+      - name: pylint output to PR on failure
+        if: failure()
         uses: thollander/actions-comment-pull-request@v2
         with:
           comment_tag: pylint_output
